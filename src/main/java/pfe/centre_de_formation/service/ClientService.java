@@ -3,6 +3,7 @@ package pfe.centre_de_formation.service;
 
 import org.springframework.stereotype.Service;
 import pfe.centre_de_formation.model.Client;
+import pfe.centre_de_formation.model.User;
 import pfe.centre_de_formation.repository.ClientRepository;
 
 import java.util.List;

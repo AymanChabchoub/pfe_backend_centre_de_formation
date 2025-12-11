@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/formateurs")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FormateurController {
 
     @Autowired

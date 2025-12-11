@@ -3,11 +3,13 @@ package pfe.centre_de_formation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pfe.centre_de_formation.model.Client;
 import pfe.centre_de_formation.model.User;
 import pfe.centre_de_formation.repository.UserRepository;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -73,6 +75,10 @@ public class UserService {
      */
     public User getByToken(String token) {
         return userRepository.findByToken(token).orElse(null);
+    }
+    public User getById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null); // ou lever une exception si tu préfères
     }
 
     // méthodes CRUD supplémentaires si besoin...

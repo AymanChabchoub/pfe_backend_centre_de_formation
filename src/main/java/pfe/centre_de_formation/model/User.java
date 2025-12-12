@@ -28,6 +28,11 @@ public class User {
 
     private LocalDateTime tokenExpiration;
 
+    // --- NOUVEAUX CHAMPS ---
+    private String adresse;
+    private String specialite;
+    private String cvPath;
+
     public User() {}
 
     public User(String nom, String prenom, String email, String password, String telephone, RoleType role) {
@@ -40,10 +45,10 @@ public class User {
     }
 
     public User(String nom, String email, String password, RoleType roleType) {
-        this.nom=nom;
-        this.email=email;
-        this.password=password;
-        this.role=roleType;
+        this.nom = nom;
+        this.email = email;
+        this.password = password;
+        this.role = roleType;
     }
 
     // --------- GETTERS & SETTERS ---------
@@ -74,4 +79,13 @@ public class User {
 
     public LocalDateTime getTokenExpiration() { return tokenExpiration; }
     public void setTokenExpiration(LocalDateTime tokenExpiration) { this.tokenExpiration = tokenExpiration; }
+
+    public String getAdresse() { return adresse; }
+    public void setAdresse(String adresse) { this.adresse = adresse; }
+
+    public String getSpecialite() { return specialite; }
+    public void setSpecialite(String specialite) { this.specialite = specialite; }
+
+    public String getCvPath() { return cvPath; }
+    public void setCvPath(String cvPath) { this.cvPath = cvPath; }
 }

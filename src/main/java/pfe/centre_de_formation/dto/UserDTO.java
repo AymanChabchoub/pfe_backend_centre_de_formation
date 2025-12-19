@@ -11,9 +11,36 @@ public class UserDTO {
     private String telephone;
     private RoleType role;
     private String token;
+    private String cvPath;
+    private String specialite;
+    private String adresse;
 
     // Constructeur vide
     public UserDTO() {}
+
+    public String getCvPath() {
+        return cvPath;
+    }
+
+    public void setCvPath(String cvPath) {
+        this.cvPath = cvPath;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
 
     // Constructeur qui initialise à partir d'un User
     public UserDTO(pfe.centre_de_formation.model.User user) {
@@ -24,6 +51,9 @@ public class UserDTO {
         this.telephone = user.getTelephone();
         this.role = user.getRole();
         this.token = user.getToken();
+        this.adresse=user.getAdresse();
+        this.cvPath=user.getCvPath();
+        this.specialite=user.getSpecialite();
     }
 
     // -------- Getters & Setters --------

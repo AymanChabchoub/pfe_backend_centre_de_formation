@@ -9,6 +9,7 @@ import pfe.centre_de_formation.repository.UserRepository;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,6 +21,11 @@ public class UserService {
 
     // Durée d'expiration du token en heures (modifiable)
     private final long TOKEN_VALID_HOURS = 24;
+
+    // ---------------- Get all users ----------------
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     public User register(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {

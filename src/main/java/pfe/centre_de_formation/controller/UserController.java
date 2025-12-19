@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +27,19 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+
+        // Convertir en DTO pour ne pas exposer le mot de passe
+        List<UserDTO> dtos = users.stream()
+                .map(UserDTO::new)
+                .toList();
+
+        return ResponseEntity.ok(dtos);
+    }
 
     // ---------------- Register ----------------
     @PostMapping("/register")

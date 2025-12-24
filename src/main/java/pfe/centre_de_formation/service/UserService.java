@@ -27,6 +27,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUserById(Long id){
+        return userRepository.findById(id).orElse(null);
+    }
+
     public User register(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Email already exists");

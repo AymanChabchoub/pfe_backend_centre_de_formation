@@ -40,6 +40,23 @@ public class UserController {
 
         return ResponseEntity.ok(dtos);
     }
+    // ---------------- Get user by ID ----------------
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        try {
+            User user = userService.getUserById(id);
+
+            // Ne jamais exposer le mot de passe
+            user.setPassword(null);
+
+            UserDTO dto = new UserDTO(user);
+            return ResponseEntity.ok(dto);
+
+        } catch (RuntimeException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     // ---------------- Register ----------------
     @PostMapping("/register")

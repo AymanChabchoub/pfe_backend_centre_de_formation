@@ -1,6 +1,5 @@
 package pfe.centre_de_formation.model;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -15,19 +14,29 @@ public class Formation {
 
     private String description;
 
-    private int dureeHeures; // par exemple : 40h
+    private int dureeHeures; // ex : 40h
 
     private double prix; // prix de la formation
 
+    // 🔹 NOUVELLE COLONNE
+    @Column(name = "formateur_id")
+    private Long formateurId;
+
+    // -------- Constructeurs --------
+
     public Formation() {}
 
-    public Formation(Long id, String titre, String description, int dureeHeures, double prix) {
+    public Formation(Long id, String titre, String description,
+                     int dureeHeures, double prix, Long formateurId) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.dureeHeures = dureeHeures;
         this.prix = prix;
+        this.formateurId = formateurId;
     }
+
+    // -------- Getters & Setters --------
 
     public Long getId() {
         return id;
@@ -67,5 +76,13 @@ public class Formation {
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public Long getFormateurId() {
+        return formateurId;
+    }
+
+    public void setFormateurId(Long formateurId) {
+        this.formateurId = formateurId;
     }
 }

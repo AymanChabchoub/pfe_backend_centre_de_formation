@@ -1,6 +1,5 @@
 package pfe.centre_de_formation.model;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -18,22 +17,31 @@ public class SessionFormation {
     private LocalDate dateDebut;
     private LocalDate dateFin;
 
-    private String salle;
+    // 🔗 Salle
+    @Column(name = "salle_id")
+    private Long salleId;
 
-    // 🔗 Formateur (optionnel pour le moment)
+    // 🔗 Formateur
+    @Column(name = "formateur_id")
     private Long formateurId;
+
+    // 🔗 Formation
+    @Column(name = "formation_id")
+    private Long formationId;
 
     // --------- Constructeurs ---------
     public SessionFormation() {}
 
-    public SessionFormation(String titre, String description, LocalDate dateDebut,
-                            LocalDate dateFin, String salle, Long formateurId) {
+    public SessionFormation(String titre, String description,
+                            LocalDate dateDebut, LocalDate dateFin,
+                            Long salleId, Long formateurId, Long formationId) {
         this.titre = titre;
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.salle = salle;
+        this.salleId = salleId;
         this.formateurId = formateurId;
+        this.formationId = formationId;
     }
 
     // --------- Getters & Setters ---------
@@ -52,10 +60,12 @@ public class SessionFormation {
     public LocalDate getDateFin() { return dateFin; }
     public void setDateFin(LocalDate dateFin) { this.dateFin = dateFin; }
 
-    public String getSalle() { return salle; }
-    public void setSalle(String salle) { this.salle = salle; }
+    public Long getSalleId() { return salleId; }
+    public void setSalleId(Long salleId) { this.salleId = salleId; }
 
     public Long getFormateurId() { return formateurId; }
     public void setFormateurId(Long formateurId) { this.formateurId = formateurId; }
-}
 
+    public Long getFormationId() { return formationId; }
+    public void setFormationId(Long formationId) { this.formationId = formationId; }
+}

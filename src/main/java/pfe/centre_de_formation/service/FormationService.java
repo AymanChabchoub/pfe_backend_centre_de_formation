@@ -43,5 +43,9 @@ public class FormationService {
     public void delete(Long id) {
         formationRepository.deleteById(id);
     }
+
+    public List<Formation> getByFormateurId(Long formateurId) {
+        return formationRepository.findByFormateurId(formateurId);
+    }
 }
 

@@ -12,15 +12,21 @@ public class Salle {
 
     private String nom;
     private int capacite;
+    private String adresse; // Nouveau champ
 
     public Salle() {
     }
 
-    public Salle(Long id, String nom, int capacite) {
+    public Salle(Long id, String nom, int capacite, String adresse) {
         this.id = id;
         this.nom = nom;
         this.capacite = capacite;
+        this.adresse = adresse;
     }
+
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
 
     public Long getId() {
         return id;
@@ -45,5 +51,12 @@ public class Salle {
     public void setNom(String nom) {
         this.nom = nom;
     }
-}
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+}

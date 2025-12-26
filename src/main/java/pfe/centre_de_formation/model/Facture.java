@@ -19,29 +19,28 @@ public class Facture {
     private LocalDate dateFacture = LocalDate.now();
     private boolean payee = false;
 
-    @ManyToOne
-    @JoinColumn(name = "session_id")
-    private SessionFormation sessionFormation;
+    // =========================
+    // 🔗 RELATIONS JPA
+    // =========================
 
-    // ⚡ On ajoute JsonBackReference pour éviter la boucle infinie
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
-    private Client client;
+    private User user;
+
+    @Column(name = "session_id")
+    private Long sessionId;
+
+    // =========================
+    // CONSTRUCTEURS
+    // =========================
 
     public Facture() { }
 
-    public Facture(String numeroFacture, double montantHT, double montantTVA,
-                   double montantTTC, Client client, SessionFormation sessionFormation) {
-        this.numeroFacture = numeroFacture;
-        this.montantHT = montantHT;
-        this.montantTVA = montantTVA;
-        this.montantTTC = montantTTC;
-        this.client = client;
-        this.sessionFormation = sessionFormation;
-    }
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
 
-    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -63,9 +62,9 @@ public class Facture {
     public boolean isPayee() { return payee; }
     public void setPayee(boolean payee) { this.payee = payee; }
 
-    public Client getClient() { return client; }
-    public void setClient(Client client) { this.client = client; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
-    public SessionFormation getSessionFormation() { return sessionFormation; }
-    public void setSessionFormation(SessionFormation sessionFormation) { this.sessionFormation = sessionFormation; }
+    public Long getSessionId() { return sessionId; }
+    public void setSessionId(Long sessionId) { this.sessionId = sessionId; }
 }

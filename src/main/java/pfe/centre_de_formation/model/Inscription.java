@@ -32,7 +32,7 @@ public class Inscription {
         this.sessionFormation = sessionFormation;
         this.dateInscription = dateInscription;
         this.payee = payee;
-    }
+        }
 
     public Long getId() {
         return id;

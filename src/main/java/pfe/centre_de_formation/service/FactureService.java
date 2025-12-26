@@ -10,31 +10,18 @@ import pfe.centre_de_formation.repository.FactureRepository;
 import pfe.centre_de_formation.repository.SessionFormationRepository;
 
 import java.util.List;
-
 @Service
 public class FactureService {
 
     private final FactureRepository factureRepository;
-    private final SessionFormationRepository sessionFormationRepository;
-    private final ClientRepository clientRepository;
 
-    public FactureService(FactureRepository factureRepository,SessionFormationRepository sessionFormationRepository,ClientRepository clientRepository) {
+    public FactureService(FactureRepository factureRepository) {
         this.factureRepository = factureRepository;
-        this.sessionFormationRepository=sessionFormationRepository;
-        this.clientRepository=clientRepository;
     }
 
     public Facture create(Facture facture) {
-        if(facture.getSessionFormation() != null && facture.getSessionFormation().getId() != null){
-            SessionFormation session = sessionFormationRepository.findById(facture.getSessionFormation().getId()) // 🔹 use instance
-                    .orElseThrow(() -> new RuntimeException("Session non trouvée"));
-            facture.setSessionFormation(session);
-        }
-        if(facture.getClient() != null && facture.getClient().getId() != null){
-            Client client = clientRepository.findById(facture.getClient().getId()) // 🔹 use instance
-                    .orElseThrow(() -> new RuntimeException("Client non trouvée"));
-            facture.setClient(client);
-        }
+        // ✅ NOTHING TO RESOLVE MANUALLY
+        // client_id and session_id are already set from JSON
         return factureRepository.save(facture);
     }
 
@@ -43,7 +30,8 @@ public class FactureService {
     }
 
     public Facture getById(Long id) {
-        return factureRepository.findById(id).orElse(null);
+        return factureRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Facture non trouvée"));
     }
 
     public Facture update(Long id, Facture facture) {
@@ -55,4 +43,3 @@ public class FactureService {
         factureRepository.deleteById(id);
     }
 }
-

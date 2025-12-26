@@ -13,9 +13,7 @@ public class Client extends User {
     private String telephone;
     private String adresse;
 
-    @OneToMany(mappedBy = "client")
-    @JsonManagedReference
-    private List<Facture> factures;
+
 
     public Client() {
         super();
@@ -34,6 +32,4 @@ public class Client extends User {
     public String getAdresse() { return adresse; }
     public void setAdresse(String adresse) { this.adresse = adresse; }
 
-    public List<Facture> getFactures() { return factures; }
-    public void setFactures(List<Facture> factures) { this.factures = factures; }
 }

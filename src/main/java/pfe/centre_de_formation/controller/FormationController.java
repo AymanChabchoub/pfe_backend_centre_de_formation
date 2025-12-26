@@ -42,5 +42,10 @@ public class FormationController {
     public void delete(@PathVariable Long id) {
         formationService.delete(id);
     }
+
+    @GetMapping("/formateur/{formateurId}")
+    public List<Formation> getFormationByFormateurId(@PathVariable Long formateurId) {
+        return formationService.getByFormateurId(formateurId);
+    }
 }
 

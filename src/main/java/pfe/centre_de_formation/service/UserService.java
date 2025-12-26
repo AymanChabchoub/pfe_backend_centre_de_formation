@@ -3,6 +3,7 @@ package pfe.centre_de_formation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pfe.centre_de_formation.enumeration.RoleType;
 import pfe.centre_de_formation.model.Client;
 import pfe.centre_de_formation.model.User;
 import pfe.centre_de_formation.repository.UserRepository;
@@ -89,6 +90,10 @@ public class UserService {
     public User getById(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.orElse(null); // ou lever une exception si tu préfères
+    }
+
+    public List<User> getFormateursBySpecialite(String specialite) {
+        return userRepository.findBySpecialiteAndRole(specialite, RoleType.FORMATEUR);
     }
 
     // méthodes CRUD supplémentaires si besoin...

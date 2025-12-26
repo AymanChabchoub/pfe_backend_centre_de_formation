@@ -1,7 +1,6 @@
 package pfe.centre_de_formation.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -15,19 +14,20 @@ public class Paiement {
     private double montant;
     private LocalDate datePaiement;
 
-    @ManyToOne
-    @JoinColumn(name = "facture_id")
-    private Facture facture;
+    @Column(name = "facture_id")
+    private Long factureId;
 
     public Paiement() {
     }
 
-    public Paiement(Long id, double montant, LocalDate datePaiement, Facture facture) {
+    public Paiement(Long id, double montant, LocalDate datePaiement, Long factureId) {
         this.id = id;
         this.montant = montant;
         this.datePaiement = datePaiement;
-        this.facture = facture;
+        this.factureId = factureId;
     }
+
+    // Getters & Setters
 
     public Long getId() {
         return id;
@@ -35,14 +35,6 @@ public class Paiement {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDate getDatePaiement() {
-        return datePaiement;
-    }
-
-    public void setDatePaiement(LocalDate datePaiement) {
-        this.datePaiement = datePaiement;
     }
 
     public double getMontant() {
@@ -53,12 +45,19 @@ public class Paiement {
         this.montant = montant;
     }
 
-    public Facture getFacture() {
-        return facture;
+    public LocalDate getDatePaiement() {
+        return datePaiement;
     }
 
-    public void setFacture(Facture facture) {
-        this.facture = facture;
+    public void setDatePaiement(LocalDate datePaiement) {
+        this.datePaiement = datePaiement;
+    }
+
+    public Long getFactureId() {
+        return factureId;
+    }
+
+    public void setFactureId(Long factureId) {
+        this.factureId = factureId;
     }
 }
-

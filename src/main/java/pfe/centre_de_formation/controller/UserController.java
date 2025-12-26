@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -55,6 +56,17 @@ public class UserController {
         } catch (RuntimeException ex) {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/formateurs/specialite/{specialite}")
+    public ResponseEntity<List<UserDTO>> getFormateursBySpecialite(@PathVariable String specialite) {
+        List<User> formateurs = userService.getFormateursBySpecialite(specialite);
+
+        // Conversion en DTO
+        List<UserDTO> dtos = formateurs.stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dtos);
     }
 
 
